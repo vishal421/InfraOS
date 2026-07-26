@@ -1,0 +1,16 @@
+<response status="success">
+  <result>
+    <licenses>
+      <entry>
+        <feature>Threat Prevention</feature>
+        <description>Threat Prevention License</description>
+        <expires>December 31, 2026</expires>
+      </entry>
+      <entry>
+        <feature>PAN-DB URL Filtering</feature>
+        <description>Palo Alto Networks URL Filtering License</description>
+        <expires>January 15, 2024</expires>
+      </entry>
+    </licenses>
+  </result>
+</response>

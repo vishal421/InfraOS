@@ -1,0 +1,90 @@
+<response status="success">
+  <result>
+    <config>
+      <devices>
+        <entry name="localhost.localdomain">
+          <network>
+            <interface>
+              <ethernet>
+                <entry name="ethernet1/1">
+                  <layer3>
+                    <ip>
+                      <entry name="10.0.1.1/24"/>
+                    </ip>
+                  </layer3>
+                </entry>
+                <entry name="ethernet1/2">
+                  <layer3>
+                    <ip>
+                      <entry name="192.168.1.1/24"/>
+                    </ip>
+                  </layer3>
+                </entry>
+              </ethernet>
+            </interface>
+          </network>
+          <vsys>
+            <entry name="vsys1">
+              <zone>
+                <entry name="trust">
+                  <network>
+                    <layer3>
+                      <member>ethernet1/1</member>
+                    </layer3>
+                  </network>
+                </entry>
+                <entry name="untrust">
+                  <network>
+                    <layer3>
+                      <member>ethernet1/2</member>
+                    </layer3>
+                  </network>
+                </entry>
+              </zone>
+              <address>
+                <entry name="finance-server-1">
+                  <ip-netmask>10.0.1.50/32</ip-netmask>
+                  <description>Finance SAP application server</description>
+                </entry>
+              </address>
+              <address-group>
+                <entry name="finance-servers">
+                  <static>
+                    <member>finance-server-1</member>
+                  </static>
+                </entry>
+              </address-group>
+              <service>
+                <entry name="https-custom">
+                  <protocol>
+                    <tcp>
+                      <port>443</port>
+                    </tcp>
+                  </protocol>
+                </entry>
+              </service>
+              <rulebase>
+                <security>
+                  <rules>
+                    <entry name="allow-finance-to-sap">
+                      <from><member>trust</member></from>
+                      <to><member>untrust</member></to>
+                      <source><member>finance-servers</member></source>
+                      <destination><member>any</member></destination>
+                      <application><member>ssl</member></application>
+                      <service><member>https-custom</member></service>
+                      <action>allow</action>
+                    </entry>
+                  </rules>
+                </security>
+                <nat>
+                  <rules/>
+                </nat>
+              </rulebase>
+            </entry>
+          </vsys>
+        </entry>
+      </devices>
+    </config>
+  </result>
+</response>

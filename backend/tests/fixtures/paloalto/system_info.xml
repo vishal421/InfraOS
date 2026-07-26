@@ -1,0 +1,11 @@
+<response status="success">
+  <result>
+    <system>
+      <hostname>fw-branch-01</hostname>
+      <model>PA-440</model>
+      <serial>001122334455</serial>
+      <sw-version>10.2.4</sw-version>
+      <uptime>124 days, 3:11:47</uptime>
+    </system>
+  </result>
+</response>
